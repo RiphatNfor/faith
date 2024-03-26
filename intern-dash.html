@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intern Dashboard - Task Management System</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #333;
+            color: white;
+        }
+
+        nav {
+            background-color: #f90;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 0 20px;
+        }
+
+        .task {
+            margin-bottom: 20px;
+            padding: 10px;
+            background-color: #444;
+            border-radius: 5px;
+        }
+
+        .task p {
+            margin: 0;
+        }
+
+        .progress {
+            height: 20px;
+            background-color: #f90;
+            border-radius: 5px;
+            margin-top: 5px;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background-color: #f60;
+            border-radius: 5px;
+            transition: width 0.5s; /* Add a transition effect */
+        }
+
+        button {
+            padding: 5px 10px;
+            background-color: #f90;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-content {
+            background-color: #333;
+            margin: 20% auto;
+            padding: 20px;
+            border-radius: 5px;
+            max-width: 400px;
+            color: white;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #555;
+            color: white;
+        }
+
+        footer {
+            background-color: #222;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="#">Logout</a>
+    </nav>
+    <div class="container">
+        <h1>Intern Dashboard</h1>
+        <div class="task">
+            <p>Task 1</p>
+            <div class="progress">
+                <div id="progress-bar-1" class="progress-bar" style="width: 80%;"></div>
+            </div>
+            <button onclick="showTaskDetails('Task 1')">View Task Details</button>
+        </div>
+        <div class="task">
+            <p>Task 2</p>
+            <div class="progress">
+                <div id="progress-bar-2" class="progress-bar" style="width: 50%;"></div>
+            </div>
+            <button onclick="showTaskDetails('Task 2')">View Task Details</button>
+        </div>
+        <div class="task">
+            <p>Task 3</p>
+            <div class="progress">
+                <div id="progress-bar-3" class="progress-bar" style="width: 20%;"></div>
+            </div>
+            <button onclick="showTaskDetails('Task 3')">View Task Details</button>
+        </div>
+    </div>
+    <div id="taskModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="hideTaskDetails()">&times;</span>
+            <h2>Task Details</h2>
+            <table>
+                <tr>
+                    <th>Attribute</th>
+                    <th>Value</th>
+                </tr>
+                <tr>
+                    <td>Task Name</td>
+                    <td id="modal-task-name"></td>
+                </tr>
+                <tr>
+                    <td>Task Description</td>
+                    <td id="modal-task-desc"></td>
+                </tr>
+                <tr>
+                    <td>Due Date</td>
+                    <td id="modal-due-date"></td>
+                </tr>
+            </table>
+            <button onclick="submitTask()">Submit Task</button>
+        </div>
+    </div>
+    <footer>
+        &copy; 2024 Task Management System
+    </footer>
+
+    <script>
+        function showTaskDetails(taskName) {
+            // Placeholder for retrieving task details
+            var taskDesc = "Task description for " + taskName;
+            var dueDate = "Due date for " + taskName;
+
+            document.getElementById("modal-task-name").textContent = taskName;
+            document.getElementById("modal-task-desc").textContent = taskDesc;
+            document.getElementById("modal-due-date").textContent = dueDate;
+
+            document.getElementById("taskModal").style.display = "block";
+        }
+
+        function hideTaskDetails() {
+            document.getElementById("taskModal").style.display = "none";
+        }
+        function submitTask(progressBarId) {
+    alert("Task submitted successfully!");
+    // Placeholder for actual submission logic
+    var progressBar = document.getElementById(progressBarId);
+    var currentWidth = parseFloat(progressBar.style.width);
+    if (!isNaN(currentWidth)) {
+        progressBar.style.width = Math.max(currentWidth - 10, 0) + "%"; // Decrease progress by 10%
+    }
+    hideTaskDetails();
+}
+
+    </script>
+</body>
+
+</html>
